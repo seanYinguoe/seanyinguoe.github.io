@@ -4,6 +4,7 @@ from html import escape
 from pathlib import Path
 from urllib.parse import urlsplit
 import os
+import re
 import shutil
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,6 +31,23 @@ if OUT.exists():
     shutil.rmtree(OUT)
 shutil.copytree(ROOT / 'static', OUT)
 STYLE_VERSION = sha256((OUT / 'style.css').read_bytes()).hexdigest()[:12]
+# Each entry in this hand-maintained file starts at the beginning of a line.
+BIBTEX = {
+    entry.group(1): entry.group(0).strip()
+    for entry in re.finditer(r'(?ms)^@\w+\{([^,\s]+),.*?(?=^@\w+\{|\Z)', (OUT / 'publications.bib').read_text())
+}
+
+
+def render_citation(match):
+    key = match.group(1)
+    citation = escape(BIBTEX[key])
+    return f'''<details class="bibtex">
+<summary>BibTeX</summary>
+<div class="bibtex-panel">
+<div class="bibtex-toolbar"><span>BibTeX citation</span><button class="copy-bibtex" type="button" hidden>Copy</button><span class="bibtex-status" role="status"></span></div>
+<pre tabindex="0" aria-label="BibTeX citation"><code>{citation}</code></pre>
+</div>
+</details>'''
 
 
 def render_page(key, route, title, description, body, *, index=True):
@@ -53,7 +71,7 @@ def render_page(key, route, title, description, body, *, index=True):
 <body class="page-{key}">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="site-shell">
-<header class="site-header"><a class="identity" href="/" aria-label="Xiaoyuan (Sean) Ying — home"{home_current}><span class="identity-dot" aria-hidden="true"></span><span>Xiaoyuan (Sean) Ying</span></a><nav class="primary-nav" aria-label="Main navigation">{nav}</nav></header>
+<header class="site-header"><a class="identity" href="/" aria-label="Xiaoyuan (Sean) Ying — home"{home_current}><span>Xiaoyuan (Sean) Ying</span></a><nav class="primary-nav" aria-label="Main navigation">{nav}</nav></header>
 <main id="main">{body}</main>
 <footer class="site-footer"><div class="footer-links"><a href="mailto:Xiaoyuan.Ying@ed.ac.uk">email</a><a href="https://github.com/seanYinguoe">github</a><a href="/academic/">academic background</a></div><p>© 2026 Xiaoyuan (Sean) Ying <span>University of Edinburgh</span></p></footer>
 </div>
@@ -64,6 +82,7 @@ def render_page(key, route, title, description, body, *, index=True):
 
 for key, route, _, title in PAGES:
     body = (ROOT / 'content' / f'{key}.html').read_text()
+    body = re.sub(r'\{\{BIBTEX:([^}]+)\}\}', render_citation, body)
     for kind, action in [('kirigami', 'Rotate the kirigami tiles'), ('kresling', 'Compress the Kresling fold')]:
         svg = (OUT / 'assets' / f'{kind}.svg').read_text()
         button = f'<button class="structure-icon" type="button" data-structure="{kind}" aria-label="{action}" title="{action}" disabled>{svg}</button>'

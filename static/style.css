@@ -97,6 +97,19 @@ main { padding-top: 26px; }
 .authors strong { color: var(--ink); }
 .publication-description { color: #4b4b4b; font-size: 14px; line-height: 1.5; margin: 8px 0; }
 .publication .text-links { margin-top: 8px; }
+.bibtex { margin-top: 6px; font-size: 13px; }
+.bibtex summary { width: fit-content; cursor: pointer; text-decoration: underline; text-decoration-color: #969696; text-underline-offset: 3px; }
+.bibtex summary:hover { text-decoration-color: var(--ink); }
+.bibtex summary::marker { font-size: 10px; color: var(--muted); }
+.bibtex-panel { margin-top: 9px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 3px; background: #f6f6f6; }
+.bibtex-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 12px; }
+.copy-bibtex { margin-left: auto; padding: 3px 10px; border: 1px solid #bcbcbc; border-radius: 3px; background: var(--paper); color: var(--ink); font: inherit; cursor: pointer; }
+.copy-bibtex:hover { background: #eaeaea; }
+.copy-bibtex:focus-visible, .bibtex pre:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.bibtex-status { flex-basis: 100%; }
+.bibtex-status:empty { display: none; }
+.bibtex pre { margin: 10px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; font: 12px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.bibtex code { font: inherit; }
 .education-item { display: grid; grid-template-columns: 125px 1fr; gap: 18px; margin-bottom: 17px; }
 .education-item:last-child { margin-bottom: 0; }
 .education-date { font-size: 13px; color: var(--muted); padding-top: 1px; }
@@ -194,7 +207,6 @@ main { padding-top: 26px; }
 @media(prefers-reduced-motion:reduce) { * { scroll-behavior: auto!important; } }
 
 /* Quiet structural details and an original-photo portrait crop. */
-.identity-dot { width: 6px; height: 6px; border-radius: 50%; background: #222; flex: 0 0 6px; margin-right: 2px; }
 /* The 600 × 750 crop starts at (1120, 340) in the 2172 × 1448 original.
    Framing in CSS preserves the original photographic pixels and scales on phones. */
 .profile-photo-frame { position: relative; width: 100%; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 2px; background: #f4f4f4; }

@@ -2,11 +2,11 @@
 
 Personal academic website about architected structures, mechanical metamaterials, kirigami and inverse design.
 
-**Website:** [seanyinguoe.github.io](https://seanyinguoe.github.io/)
+**Status:** Private draft. The GitHub Pages site is unpublished and its publishing workflow is disabled at the owner's request. Do not enable public publishing without a new request from the owner.
 
 ## Update the website
 
-Edit the relevant file, then commit and push to `main`. GitHub Actions checks and publishes the website automatically.
+Edit the relevant file, then commit and push to `main`. Pushes do not publish the website. Continue reviewing changes through the separate owner-only preview while the design is being refined.
 
 | File | Content |
 |---|---|
@@ -16,7 +16,9 @@ Edit the relevant file, then commit and push to `main`. GitHub Actions checks an
 | `content/academic.html` | Education, presentations, teaching and skills |
 | `static/style.css` | Typography, layout and responsive styles |
 | `static/assets/` | Profile photograph, research figure and geometric icons |
-| `static/publications.bib` | Downloadable citations |
+| `static/publications.bib` | Citation entries used by each paper's expandable BibTeX box |
+
+Each publication uses a `{{BIBTEX:citationKey}}` marker in `content/publications.html`. The build inserts the matching entry from `static/publications.bib`; edit that file to update a citation. Visitors can expand an entry and copy it, or select its text manually if clipboard access is unavailable.
 
 This repository contains only the public website. The private job tracker and unpublished drafts are managed separately and are not included in its source, history or deployment.
 
@@ -35,7 +37,7 @@ Open `http://localhost:8080`. Generated output in `dist/` is ignored by Git; the
 
 ## Hosting and a future custom domain
 
-The repository's **Settings → Pages → Source** is **GitHub Actions**. The workflow uploads only `dist/`, not the entire repository. Public pages allow search-engine indexing and include canonical URLs and a sitemap; appearing in search results is not immediate or guaranteed.
+The repository is private and its GitHub Pages deployment is unpublished. The publishing workflow is disabled and has no automatic push trigger. Only after the owner requests a public release, enable the workflow and run it manually. The workflow uploads only `dist/`, not the entire repository. The future public output includes indexing metadata, canonical URLs and a sitemap; these do not provide access control.
 
 A custom domain can be connected later without redesigning the site. Verify the domain in GitHub, add it under **Settings → Pages → Custom domain**, then configure its DNS using [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site). After connection, run the publishing workflow again so canonical URLs and the sitemap use the custom domain. Enable HTTPS once available.
 

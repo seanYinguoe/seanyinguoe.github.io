@@ -73,7 +73,7 @@ def render_page(key, route, title, description, body, *, index=True):
 <div class="site-shell">
 <header class="site-header"><a class="identity" href="/" aria-label="Xiaoyuan (Sean) Ying — home"{home_current}><span>Xiaoyuan (Sean) Ying</span></a><nav class="primary-nav" aria-label="Main navigation">{nav}</nav></header>
 <main id="main">{body}</main>
-<footer class="site-footer"><div class="footer-links"><a href="mailto:Xiaoyuan.Ying@ed.ac.uk">email</a><a href="https://github.com/seanYinguoe">github</a><a href="/academic/">academic background</a></div><p>© 2026 Xiaoyuan (Sean) Ying <span>University of Edinburgh</span></p></footer>
+<footer class="site-footer"><div class="footer-links"><a href="mailto:Xiaoyuan.Ying@ed.ac.uk">email</a><a href="https://github.com/seanYinguoe">github</a><a href="/academic/">academic background</a></div><p>© 2026 Xiaoyuan (Sean) Ying</p></footer>
 </div>
 </body>
 </html>

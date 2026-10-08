@@ -96,8 +96,12 @@ main { padding-top: 26px; }
 .authors,.venue { color: var(--muted); font-size: 13px; line-height: 1.45; margin-bottom: 4px; }
 .authors strong { color: var(--ink); }
 .publication-description { color: #4b4b4b; font-size: 14px; line-height: 1.5; margin: 8px 0; }
-.publication .text-links { margin-top: 8px; }
+.publication .text-links { margin-top: 8px; align-items: baseline; }
+.bibtex-toggle { padding: 0; border: 0; background: transparent; color: var(--ink); font: inherit; cursor: pointer; text-decoration: underline; text-decoration-color: #969696; text-underline-offset: 3px; }
+.bibtex-toggle:hover { text-decoration-color: var(--ink); }
+.bibtex-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 .bibtex { margin-top: 6px; font-size: 13px; }
+.bibtex-enhanced { margin-top: 0; }
 .bibtex summary { width: fit-content; cursor: pointer; text-decoration: underline; text-decoration-color: #969696; text-underline-offset: 3px; }
 .bibtex summary:hover { text-decoration-color: var(--ink); }
 .bibtex summary::marker { font-size: 10px; color: var(--muted); }

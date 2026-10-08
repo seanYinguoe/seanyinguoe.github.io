@@ -41,7 +41,7 @@ BIBTEX = {
 def render_citation(match):
     key = match.group(1)
     citation = escape(BIBTEX[key])
-    return f'''<details class="bibtex">
+    return f'''<details class="bibtex" id="citation-{escape(key, quote=True)}">
 <summary>BibTeX</summary>
 <div class="bibtex-panel">
 <div class="bibtex-toolbar"><span>BibTeX citation</span><button class="copy-bibtex" type="button" hidden>Copy</button><span class="bibtex-status" role="status"></span></div>

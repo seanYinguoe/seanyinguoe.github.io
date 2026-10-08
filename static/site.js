@@ -25,8 +25,22 @@ document.querySelectorAll('.bibtex').forEach((details) => {
   const button = details.querySelector('.copy-bibtex');
   const code = details.querySelector('code');
   const status = details.querySelector('.bibtex-status');
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'bibtex-toggle';
+  toggle.textContent = 'BibTeX';
+  toggle.setAttribute('aria-controls', details.id);
+  toggle.setAttribute('aria-expanded', String(details.open));
+  toggle.addEventListener('click', () => {
+    details.open = !details.open;
+    toggle.setAttribute('aria-expanded', String(details.open));
+  });
+  details.closest('.publication-body').querySelector('.text-links').append(toggle);
+  details.querySelector('summary').hidden = true;
+  details.classList.add('bibtex-enhanced');
   button.hidden = false;
   details.addEventListener('toggle', () => {
+    toggle.setAttribute('aria-expanded', String(details.open));
     if (!details.open) status.textContent = '';
   });
   button.addEventListener('click', async () => {

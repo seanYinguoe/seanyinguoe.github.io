@@ -1,0 +1,9 @@
+{
+  "name": "xiaoyuan-ying-academic-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/test_structure_icons.mjs",
+    "icons": "node scripts/render_structure_icons.mjs"
+  }
+}

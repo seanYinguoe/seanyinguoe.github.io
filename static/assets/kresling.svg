@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><g data-structure-mesh>
+    <polygon points="11.04,33.63 28.34,32.04 35.07,5.83 17.24,5.03" fill="#fafafa"/>
+    <polygon points="11.04,33.63 28.34,32.04 17.24,5.03" fill="#e9e9e7"/>
+    <path d="M11.04,33.63L28.34,32.04L35.07,5.83L17.24,5.03Z" fill="none" stroke="#333" stroke-width="1.15" stroke-linejoin="round"/>
+    <path d="M28.34,32.04L17.24,5.03" fill="none" stroke="#777" stroke-width=".95" stroke-dasharray="2 1.65"/>
+    <polygon points="28.34,32.04 41.30,36.04 41.83,11.17 35.07,5.83" fill="#fafafa"/>
+    <polygon points="28.34,32.04 41.30,36.04 35.07,5.83" fill="#e9e9e7"/>
+    <path d="M28.34,32.04L41.30,36.04L41.83,11.17L35.07,5.83Z" fill="none" stroke="#333" stroke-width="1.15" stroke-linejoin="round"/>
+    <path d="M41.30,36.04L35.07,5.83" fill="none" stroke="#777" stroke-width=".95" stroke-dasharray="2 1.65"/>
+    <polygon points="6.70,39.22 11.04,33.63 17.24,5.03 6.17,9.57" fill="#fafafa"/>
+    <polygon points="6.70,39.22 11.04,33.63 6.17,9.57" fill="#e9e9e7"/>
+    <path d="M6.70,39.22L11.04,33.63L17.24,5.03L6.17,9.57Z" fill="none" stroke="#333" stroke-width="1.15" stroke-linejoin="round"/>
+    <path d="M11.04,33.63L6.17,9.57" fill="none" stroke="#777" stroke-width=".95" stroke-dasharray="2 1.65"/>
+    <polygon points="41.30,36.04 36.96,41.63 30.76,15.71 41.83,11.17" fill="#fafafa"/>
+    <polygon points="41.30,36.04 36.96,41.63 41.83,11.17" fill="#e9e9e7"/>
+    <path d="M41.30,36.04L36.96,41.63L30.76,15.71L41.83,11.17Z" fill="none" stroke="#333" stroke-width="1.15" stroke-linejoin="round"/>
+    <path d="M36.96,41.63L41.83,11.17" fill="none" stroke="#777" stroke-width=".95" stroke-dasharray="2 1.65"/>
+    <polygon points="19.66,43.22 6.70,39.22 6.17,9.57 12.93,14.91" fill="#fafafa"/>
+    <polygon points="19.66,43.22 6.70,39.22 12.93,14.91" fill="#e9e9e7"/>
+    <path d="M19.66,43.22L6.70,39.22L6.17,9.57L12.93,14.91Z" fill="none" stroke="#333" stroke-width="1.15" stroke-linejoin="round"/>
+    <path d="M6.70,39.22L12.93,14.91" fill="none" stroke="#777" stroke-width=".95" stroke-dasharray="2 1.65"/>
+    <polygon points="36.96,41.63 19.66,43.22 12.93,14.91 30.76,15.71" fill="#fafafa"/>
+    <polygon points="36.96,41.63 19.66,43.22 30.76,15.71" fill="#e9e9e7"/>
+    <path d="M36.96,41.63L19.66,43.22L12.93,14.91L30.76,15.71Z" fill="none" stroke="#333" stroke-width="1.15" stroke-linejoin="round"/>
+    <path d="M19.66,43.22L30.76,15.71" fill="none" stroke="#777" stroke-width=".95" stroke-dasharray="2 1.65"/><polygon points="41.83,11.17 30.76,15.71 12.93,14.91 6.17,9.57 17.24,5.03 35.07,5.83" fill="#fff" stroke="#333" stroke-width="1.15" stroke-linejoin="round"/></g></svg>

@@ -2,7 +2,7 @@
 
 Personal academic website about architected structures, mechanical metamaterials, kirigami and inverse design.
 
-**Website:** [seanyinguoe.github.io](https://seanyinguoe.github.io). Public release authorised by the owner on 9 October 2026.
+**Website:** [xiaoyuanying.me](https://xiaoyuanying.me). Hosted on GitHub Pages; public release authorised by the owner on 9 October 2026.
 
 ## Update the website
 
@@ -35,11 +35,13 @@ python3 -m http.server 8080 --directory dist --bind 127.0.0.1
 
 Open `http://localhost:8080`. Generated output in `dist/` is ignored by Git; the hosting workflow builds it afresh. If changing the icon geometry, run `node scripts/render_structure_icons.mjs` and commit the refreshed fallback SVGs as well.
 
-## Hosting and a future custom domain
+## Hosting and custom domain
 
 The public website is hosted by GitHub Pages. The workflow uploads only `dist/`, not the entire repository. The output includes indexing metadata, canonical URLs and a sitemap. The private job tracker remains a separate authenticated application and is not hosted by GitHub Pages.
 
-A custom domain can be connected later without redesigning the site. Verify the domain in GitHub, add it under **Settings → Pages → Custom domain**, then configure its DNS using [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site). After connection, run the publishing workflow again so canonical URLs and the sitemap use the custom domain. Enable HTTPS once available.
+The custom domain is `xiaoyuanying.me`, managed through Namecheap BasicDNS and **Settings → Pages → Custom domain** in GitHub. The `www` CNAME points to `seanyinguoe.github.io`; the apex uses GitHub's four A records. Keep the GitHub ownership-verification TXT record in DNS. See [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) for the current values.
+
+The publishing workflow uses the domain configured in GitHub Pages and generates HTTPS canonical URLs and a sitemap, including while a new certificate is being issued. If the domain changes, run the workflow again and update the local build's default address. HTTPS enforcement is managed in GitHub Pages settings once the certificate is ready. This Actions-based deployment does not require a `CNAME` file.
 
 ## Research illustrations and interaction
 

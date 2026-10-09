@@ -9,7 +9,7 @@ import shutil
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'dist'
-SITE_URL = os.environ.get('SITE_URL', 'https://seanyinguoe.github.io').rstrip('/')
+SITE_URL = os.environ.get('SITE_URL', 'https://xiaoyuanying.me').rstrip('/')
 parsed = urlsplit(SITE_URL)
 if parsed.scheme != 'https' or not parsed.netloc or parsed.path or parsed.query or parsed.fragment:
     raise ValueError('SITE_URL must be an HTTPS origin without a path, query or fragment.')

@@ -35,7 +35,8 @@ jobs:
       - name: Build public pages
         env:
           SITE_URL: ${{ steps.pages.outputs.base_url }}
-        run: python3 scripts/build_site.py
+        # Keep canonical links on HTTPS while GitHub provisions the certificate.
+        run: SITE_URL="${SITE_URL/#http:/https:}" python3 scripts/build_site.py
       - name: Check the public output
         run: python3 scripts/check_site.py
       - name: Upload only the built website

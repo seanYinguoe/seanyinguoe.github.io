@@ -1,0 +1,108 @@
+<article class="research-note">
+<header class="note-heading">
+  <a class="note-back" href="/publications/#paper-bistability">← Publications</a>
+  <p class="note-kicker">Illustrated research note · Manuscript under review</p>
+  <h1>Bistable shape-morphing kirigami</h1>
+  <p class="note-deck">Designing a cut sheet that opens into a curved surface and holds its shape.</p>
+  <p class="note-byline">Xiaoyuan Ying &amp; Marcelo A. Dias · 2026</p>
+  <div class="text-links"><a href="https://arxiv.org/abs/2607.26941">Read the paper</a><a href="https://arxiv.org/html/2607.26941v1">Paper &amp; supplement</a><a href="https://github.com/seanYinguoe/3D_Bistable_Conformal_Kirigami">Code</a></div>
+</header>
+
+<p class="note-intro">Thin elastic ligaments can give a triangular unit two stable configurations. We match their mechanical response to the different stretches required across a curved surface, encoding both the target shape and its stability in a flat cut pattern. <a class="cite" href="#ref-paper">[1]</a></p>
+
+<nav class="note-index" aria-label="In this note"><a href="#unit">The unit</a><a href="#mapping">The mapping</a><a href="#anisotropy">Anisotropy</a><a href="#design">Design workflow</a><a href="#validation">From sheet to surface</a><a href="#references">References</a></nav>
+
+<figure class="note-figure note-overview">
+  <a class="figure-link" href="/assets/bistable-kirigami-framework.png" target="_blank" rel="noopener" aria-label="Open the graphical abstract at full size"><img src="/assets/bistable-kirigami-framework.png" width="3070" height="1935" alt="Graphical abstract connecting conformal surface design, ligament-based bistable units and deployed kirigami structures."></a>
+  <figcaption><strong>The idea at a glance.</strong> The authors’ graphical abstract. Figures in this note can be opened at full size.</figcaption>
+</figure>
+
+<section id="unit" class="note-section">
+  <h2><span class="section-number">01</span> A ligament-based bistable unit</h2>
+  <p>Three slender ligaments connect a triangular core to its surrounding flanks. As the unit opens, these ligaments bend and stretch. Their geometry can create an energy barrier between a closed state and a second, deployed equilibrium: the unit can stay open after the load is removed. <a class="cite" href="#ref-paper">[1, Fig. 1]</a></p>
+
+  <figure class="note-figure animation" data-animation aria-labelledby="unit-caption">
+    <video controls playsinline muted preload="metadata" poster="/assets/bistable-note/ligament-unit.jpg" width="1200" height="584" aria-label="Ligament unit opening alongside its computed energy landscape"><source src="/assets/bistable-note/ligament-unit.mp4" type="video/mp4"></video>
+    <div class="animation-controls" hidden><button type="button" data-play>Play</button><button type="button" data-reset>Reset</button><label class="visually-hidden" for="unit-position">Unit animation position</label><input id="unit-position" type="range" min="0" max="100" step="0.1" value="0"><output for="unit-position">0%</output></div>
+    <figcaption id="unit-caption"><strong>Opening the unit.</strong> Follow the ligament deformation and the computed energy curve together. Original animation from SES slide 5; playback illustrates the deformation path, not measured dynamics.</figcaption>
+  </figure>
+
+  <dl class="note-definitions"><div><dt>Where does it settle?</dt><dd>The strain at the deployed energy minimum, <i>ε</i><sub>bist</sub>, sets the unit’s stable expansion.</dd></div><div><dt>How deep is the well?</dt><dd><i>η</i> = (<i>E</i><sub>max</sub> − <i>E</i><sub>min</sub>) / <i>E</i><sub>max</sub> measures its relative depth: <i>E</i><sub>min</sub> is the deployed local minimum and <i>E</i><sub>max</sub> is the intervening barrier.</dd></div></dl>
+  <p>The ligament angle <i>β</i> tunes the deployed strain and energy landscape. Ligament thickness <i>t</i> strongly affects the energy barrier. This builds on earlier work on geometric bistable motifs and slender ligaments in rigid solids. <a class="cite" href="#ref-motif">[2]</a> <a class="cite" href="#ref-rigid">[3]</a></p>
+
+  <details class="note-detail"><summary>How the ligament model works</summary>
+    <figure class="note-figure note-unit-geometry"><a class="figure-link" href="/assets/bistable-note/ligament-geometry.png" target="_blank" rel="noopener" aria-label="Open the ligament geometry at full size"><img src="/assets/bistable-note/ligament-geometry.png" width="1846" height="1168" loading="lazy" alt="Triangular unit and its deformed configuration, showing the core, flanks, ligament geometry and bar-chain representation."></a><figcaption>Unit geometry from SES slide 4.</figcaption></figure>
+    <p>The model treats the core and flanks as rigid and concentrates compliance in the ligaments. A Hencky bar-chain represents each ligament with extensible bars and rotational springs. Its energy combines bending and stretching:</p>
+    <p class="note-equation" aria-label="Ligament energy equals one half the sum of bending stiffness times rotation squared, plus one half the sum of stretching stiffness times extension squared"><i>E</i><sub>lig</sub> = ½ ∑<sub>i</sub> <i>k</i><sub>b,i</sub> <i>φ</i><sub>i</sub>² + ½ ∑<sub>i</sub> <i>k</i><sub>s,i</sub> <i>e</i><sub>i</sub>²</p>
+    <p>The energy is minimised subject to end-position and tangent constraints. The bars and springs are a numerical representation of a continuous ligament, rather than physical pin joints. See the paper’s Eq. (2) and Supplementary Note S1. <a class="cite" href="#ref-paper">[1]</a></p>
+  </details>
+</section>
+
+<section id="mapping" class="note-section">
+  <h2><span class="section-number">02</span> Smooth geometry, finite triangles</h2>
+  <p>A smooth conformal map preserves local angles. At any one point, the infinitesimal stretch is the same in every direction, but its magnitude can vary from point to point. A finite triangular cell samples that variation across three different edges. <a class="cite" href="#ref-paper">[1, Supplementary Note S4]</a></p>
+
+  <figure class="note-figure animation" data-animation aria-labelledby="mapping-caption">
+    <div class="mapping-comparison">
+      <div><h3>Smooth setting</h3><video controls playsinline muted preload="metadata" poster="/assets/bistable-note/smooth-mapping.jpg" width="1000" height="572" aria-label="Smooth conformal mapping illustrated by local circles on a spatially varying scale field"><source src="/assets/bistable-note/smooth-mapping.mp4" type="video/mp4"></video></div>
+      <div><h3>Discrete setting</h3><video controls playsinline muted preload="metadata" poster="/assets/bistable-note/discrete-mapping.jpg" width="1000" height="572" aria-label="Finite triangular cell sampling a spatially varying scale field"><source src="/assets/bistable-note/discrete-mapping.mp4" type="video/mp4"></video></div>
+    </div>
+    <div class="animation-controls" hidden><button type="button" data-play>Play</button><button type="button" data-reset>Reset</button><label class="visually-hidden" for="mapping-position">Mapping animation position</label><input id="mapping-position" type="range" min="0" max="100" step="0.1" value="0"><output for="mapping-position">0%</output></div>
+    <figcaption id="mapping-caption"><strong>Compare the two settings.</strong> Play or scrub both animations together. The colour field represents spatial variation in conformal scale. Original conceptual animations from SES slide 11.</figcaption>
+  </figure>
+
+  <p>For deployment, define each edge stretch as <i>λ</i><sub>i</sub> = <i>ℓ</i><sub>i,deployed</sub> / <i>ℓ</i><sub>i,flat</sub>, for <i>i</i> = 1, 2, 3. These three values need not be equal.</p>
+  <p class="note-takeaway">Local conformality does not make every finite triangle isotropic.</p>
+</section>
+
+<section id="anisotropy" class="note-section">
+  <h2><span class="section-number">03</span> Why the three edge stretches matter</h2>
+  <p>Equal overall expansion does not guarantee the same stability. In the comparison below, the same unit geometry reaches approximately the same area expansion (about 2.4), yet changing the balance between its three edge stretches removes the second energy minimum. <a class="cite" href="#ref-paper">[1, Fig. 4]</a></p>
+  <figure class="note-figure"><a class="figure-link" href="/assets/bistable-note/anisotropic-deployment.png" target="_blank" rel="noopener" aria-label="Open the isotropic versus anisotropic comparison at full size"><img src="/assets/bistable-note/anisotropic-deployment.png" width="1800" height="1186" loading="lazy" alt="Paper Figure 4: isotropic edge stretches of 1.54 each retain a second energy minimum, while anisotropic stretches of 1.46, 1.56 and 1.63 do not, for the same unit geometry."></a><figcaption><strong>One unit, two loading paths.</strong> Isotropic stretching (1.54, 1.54, 1.54) is bistable in this example; anisotropic stretching (1.46, 1.56, 1.63) is monostable. Stretch values are rounded. Original Fig. 4. <a class="cite" href="#ref-paper">[1]</a></figcaption></figure>
+  <p>This does not mean anisotropy always destroys bistability. It means stability must be checked for the actual combination of edge stretches. The framework maps admissible bistable regions and selects a unit geometry for each cell’s particular deformation. <a class="cite" href="#ref-paper">[1, Fig. 5]</a></p>
+</section>
+
+<section id="design" class="note-section">
+  <h2><span class="section-number">04</span> An anisotropy-aware design workflow</h2>
+  <p>Boundary First Flattening supplies a planar conformal map of the target surface. <a class="cite" href="#ref-bff">[4]</a> Conformal surface design provides the geometric starting point; here, unit-level mechanics adds the requirement that the deployed configuration should also be stable. <a class="cite" href="#ref-conformal">[5]</a></p>
+  <figure class="note-figure"><a class="figure-link" href="/assets/bistable-note/design-workflow.png" target="_blank" rel="noopener" aria-label="Open the design workflow at full size"><img src="/assets/bistable-note/design-workflow.png" width="1800" height="1089" loading="lazy" alt="Paper Figure 6: target surface, conformal flattening, triangular discretisation and local stretch extraction, bistable unit selection, then assembly of the planar cut pattern."></a><figcaption><strong>From target geometry to a cut pattern.</strong> Original design workflow, Fig. 6. <a class="cite" href="#ref-paper">[1]</a></figcaption></figure>
+  <ol class="design-steps">
+    <li><strong>Map.</strong> Flatten the target surface and obtain its spatially varying conformal scale.</li>
+    <li><strong>Resolve.</strong> Place a regular triangular grid on the flattened domain. Interpolate the scale field barycentrically onto the grid nodes, then convert the nodal values into three edge stretches for each cell.</li>
+    <li><strong>Match.</strong> Select ligament geometry from a precomputed library: match the stable expansion to the target deformation and favour a deeper relative energy well, <i>η</i>. Thickness provides a further means of tuning the barrier.</li>
+    <li><strong>Assemble.</strong> Combine the selected units into a flat, connected cut pattern. For the demonstrated designs, the scale field is globally rescaled so the boundary rim units remain undeployed.</li>
+  </ol>
+</section>
+
+<section id="validation" class="note-section">
+  <h2><span class="section-number">05</span> From a flat sheet to a stable surface</h2>
+  <p>The dome and double-dome examples connect the local unit design to a complete sheet. The animations show the prescribed deployment path alongside the summed in-plane energy of its units. <a class="cite" href="#ref-paper">[1, Fig. 7]</a></p>
+  <div class="example-selector" role="group" aria-label="Choose a deployment example" hidden><button type="button" data-example="dome" aria-pressed="true">Dome</button><button type="button" data-example="double-dome" aria-pressed="false">Double dome</button></div>
+  <figure class="note-figure animation" data-animation data-example-panel="dome" aria-labelledby="dome-caption">
+    <video controls playsinline muted preload="metadata" poster="/assets/bistable-note/dome-deployment.jpg" width="1280" height="538" aria-label="Dome deployment with the summed in-plane energy along the prescribed path"><source src="/assets/bistable-note/dome-deployment.mp4" type="video/mp4"></video>
+    <div class="animation-controls" hidden><button type="button" data-play>Play</button><button type="button" data-reset>Reset</button><label class="visually-hidden" for="dome-position">Dome animation position</label><input id="dome-position" type="range" min="0" max="100" step="0.1" value="0"><output for="dome-position">0%</output></div>
+    <figcaption id="dome-caption"><strong>Dome.</strong> Original SES slide 16 animation. The energy shown excludes out-of-plane bending at the interfaces; playback is not a prediction of deployment dynamics.</figcaption>
+  </figure>
+  <figure class="note-figure animation" data-animation data-example-panel="double-dome" aria-labelledby="double-dome-caption">
+    <video controls playsinline muted preload="metadata" poster="/assets/bistable-note/double-dome-deployment.jpg" width="1280" height="538" aria-label="Double-dome deployment with the summed in-plane energy along the prescribed path"><source src="/assets/bistable-note/double-dome-deployment.mp4" type="video/mp4"></video>
+    <div class="animation-controls" hidden><button type="button" data-play>Play</button><button type="button" data-reset>Reset</button><label class="visually-hidden" for="double-dome-position">Double-dome animation position</label><input id="double-dome-position" type="range" min="0" max="100" step="0.1" value="0"><output for="double-dome-position">0%</output></div>
+    <figcaption id="double-dome-caption"><strong>Double dome.</strong> Original SES slide 16 animation. The energy shown excludes out-of-plane bending at the interfaces; playback is not a prediction of deployment dynamics.</figcaption>
+  </figure>
+  <p>Experiments with 1.5 mm Delrin sheets demonstrate freestanding deployed dome and double-dome structures. Their front-view contours are compared with the target shapes below. The reported contour errors measure these projected profiles, rather than the full three-dimensional surface. <a class="cite" href="#ref-paper">[1, Fig. 8]</a></p>
+  <figure class="note-figure"><a class="figure-link" href="/assets/bistable-note/experiments.png" target="_blank" rel="noopener" aria-label="Open the experimental validation at full size"><img src="/assets/bistable-note/experiments.png" width="1800" height="1139" loading="lazy" alt="Paper Figure 8: fabricated dome and double-dome kirigami samples in flat and deployed states, with comparisons between photographed front-view contours and target profiles."></a><figcaption><strong>Physical validation.</strong> Fabricated patterns, deployed shapes and front-view contour comparisons. Original Fig. 8. <a class="cite" href="#ref-paper">[1]</a></figcaption></figure>
+  <p class="note-scope"><strong>Scope.</strong> The available unit geometries have a bounded stretch range. The design energy accounts for in-plane ligament mechanics, and additional out-of-plane bending can affect stability. Negative-curvature regions can suppress bistability, so the method does not guarantee a stable realisation of every target surface. <a class="cite" href="#ref-paper">[1]</a></p>
+</section>
+
+<section id="references" class="note-section note-references">
+  <h2>References &amp; figure credits</h2>
+  <ol>
+    <li id="ref-paper">Ying, X. &amp; Dias, M. A. <a href="https://arxiv.org/abs/2607.26941">Instability-induced bistable shape-morphing kirigami structures.</a> arXiv:2607.26941 (2026). Manuscript under review. Technical references in this note refer to <a href="https://arxiv.org/html/2607.26941v1">version 1 and its supplementary information</a>.</li>
+    <li id="ref-motif">Rafsanjani, A. &amp; Pasini, D. <a href="https://doi.org/10.1016/j.eml.2016.09.001">Bistable auxetic mechanical metamaterials inspired by ancient geometric motifs.</a> <i>Extreme Mechanics Letters</i> <b>9</b>, 291–296 (2016).</li>
+    <li id="ref-rigid">Shang, X., Liu, L., Rafsanjani, A. &amp; Pasini, D. <a href="https://doi.org/10.1557/jmr.2017.417">Durable bistable auxetics made of rigid solids.</a> <i>Journal of Materials Research</i> <b>33</b>, 300–308 (2018).</li>
+    <li id="ref-bff">Sawhney, R. &amp; Crane, K. <a href="https://doi.org/10.1145/3132705">Boundary First Flattening.</a> <i>ACM Transactions on Graphics</i> <b>37</b>(1), Article 5. Published online in 2017.</li>
+    <li id="ref-conformal">Wang, Y., Ren, Y. &amp; Chen, T. <a href="https://doi.org/10.1115/1.4056350">From Kirigami to Hydrogels: A Tutorial on Designing Conformally Transformable Surfaces.</a> <i>Journal of Applied Mechanics</i> <b>90</b>(4), 044801 (2023).</li>
+  </ol>
+  <p>Figures are the authors’ original graphical abstract and research figures. Animations and the unit diagram come from Xiaoyuan Ying’s SES presentation (slides 4, 5, 11 and 16), converted for web playback without changing the scientific geometry or plotted data. All animations start paused.</p>
+  <p><a href="/publications/#paper-bistability">Back to the publication →</a></p>
+</section>
+</article>

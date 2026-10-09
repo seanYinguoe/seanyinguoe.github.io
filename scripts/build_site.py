@@ -13,13 +13,17 @@ SITE_URL = os.environ.get('SITE_URL', 'https://xiaoyuanying.me').rstrip('/')
 parsed = urlsplit(SITE_URL)
 if parsed.scheme != 'https' or not parsed.netloc or parsed.path or parsed.query or parsed.fragment:
     raise ValueError('SITE_URL must be an HTTPS origin without a path, query or fragment.')
-PAGES = [
+PRIMARY_PAGES = [
     ('home', '/', 'Home', 'Xiaoyuan (Sean) Ying — Architected Structures & Metamaterials'),
     ('research', '/research/', 'Research', 'Research — Xiaoyuan (Sean) Ying'),
     ('publications', '/publications/', 'Publications', 'Publications — Xiaoyuan (Sean) Ying'),
     ('academic', '/academic/', 'Academic', 'Academic Background — Xiaoyuan (Sean) Ying'),
 ]
+PAGES = PRIMARY_PAGES + [
+    ('bistable-note', '/research/bistable-kirigami/', 'Illustrated note', 'Bistable shape-morphing kirigami — Illustrated note — Xiaoyuan Ying'),
+]
 DESCRIPTIONS = {
+    'bistable-note': 'An illustrated guide to ligament-based bistability, finite-cell anisotropy and the inverse design of curved kirigami structures, with animations from the research.',
     'home': 'Xiaoyuan (Sean) Ying, PhD student at the University of Edinburgh. Research in architected structures, kirigami, metamaterials and inverse design, extending to soft electronics and metasurfaces.',
     'research': 'Research in geometry, inverse design and elastic instability, with engineering applications in flexible sensors, soft electronics and metasurfaces.',
     'publications': 'Journal articles and manuscripts under review by Xiaoyuan Ying on shape-morphing kirigami and adaptive structures.',
@@ -51,9 +55,15 @@ def render_citation(match):
 
 
 def render_page(key, route, title, description, body, *, index=True):
+    nav_key = 'research' if key == 'bistable-note' else key
+    extra_head = ''
+    if key == 'bistable-note':
+        for filename, tag in [('bistable-note.css', '<link rel="stylesheet" href="/{file}?v={version}">'), ('bistable-note.js', '<script type="module" src="/{file}?v={version}"></script>')]:
+            version = sha256((OUT / filename).read_bytes()).hexdigest()[:12]
+            extra_head += tag.format(file=filename, version=version) + '\n'
     nav = ''.join(
-        f'<a href="{url}"' + (' aria-current="page"' if key == slug else '') + f'>{label.lower()}</a>'
-        for slug, url, label, _ in PAGES[1:]
+        f'<a href="{url}"' + (' aria-current="page"' if nav_key == slug else '') + f'>{label.lower()}</a>'
+        for slug, url, label, _ in PRIMARY_PAGES[1:]
     )
     home_current = ' aria-current="page"' if key == 'home' else ''
     robots = 'index,follow' if index else 'noindex,follow'
@@ -67,6 +77,7 @@ def render_page(key, route, title, description, body, *, index=True):
 {canonical}
 <link rel="icon" type="image/svg+xml" href="/assets/dot.svg"><link rel="stylesheet" href="/style.css?v={STYLE_VERSION}">
 <script src="/site.js" type="module"></script>
+{extra_head}
 </head>
 <body class="page-{key}">
 <a class="skip-link" href="#main">Skip to content</a>

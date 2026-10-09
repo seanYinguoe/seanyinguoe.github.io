@@ -7,9 +7,9 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'dist'
-PAGES = {'index.html', 'research/index.html', 'publications/index.html', 'academic/index.html', '404.html'}
+PAGES = {'index.html', 'research/index.html', 'publications/index.html', 'academic/index.html', '404.html', 'research/bistable-kirigami/index.html'}
 assert {str(p.relative_to(OUT)) for p in OUT.rglob('*.html')} == PAGES
-assert {p.name for p in (ROOT / 'content').iterdir()} == {'home.html', 'research.html', 'publications.html', 'academic.html'}
+assert {p.name for p in (ROOT / 'content').iterdir()} == {'home.html', 'research.html', 'publications.html', 'academic.html', 'bistable-note.html'}
 assert not any(p.is_symlink() for p in OUT.rglob('*')), 'Unexpected symlink in public output.'
 
 
@@ -23,7 +23,7 @@ class Page(HTMLParser):
         a = dict(attrs)
         if 'id' in a:
             self.ids.add(a['id'])
-        for key in ('src', 'href'):
+        for key in ('src', 'href', 'poster'):
             if key in a:
                 self.links.append(a[key])
         if tag == 'meta' and 'name' in a:
@@ -57,5 +57,5 @@ for p in OUT.glob('*.js'):
 for ref in re.findall(r"url\(['\"]?([^'\")]+)", (OUT / 'style.css').read_text()):
     assert (OUT / ref.lstrip('/')).is_file(), f'Missing CSS asset: {ref}'
 sitemap = ET.parse(OUT / 'sitemap.xml')
-assert len(sitemap.getroot()) == 4
+assert len(sitemap.getroot()) == 5
 print('Public pages, local assets, navigation anchors, indexing and publication boundaries passed.')

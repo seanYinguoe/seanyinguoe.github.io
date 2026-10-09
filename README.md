@@ -13,8 +13,10 @@ Edit the relevant file, then commit and push to `main`. The GitHub Pages workflo
 | `content/home.html` | Introduction, profile and research highlights |
 | `content/research.html` | Research statement, ongoing work, themes and code |
 | `content/publications.html` | Publication records |
+| `content/bistable-note.html` | Illustrated bistability note at `/research/bistable-kirigami/` |
 | `content/academic.html` | Education, presentations, teaching and skills |
 | `static/style.css` | Typography, layout and responsive styles |
+| `static/bistable-note.css`, `static/bistable-note.js` | Scoped note layout and original-animation playback controls |
 | `static/assets/` | Profile photograph, research figure and geometric icons |
 | `static/publications.bib` | Citation entries used by each paper's expandable BibTeX box |
 
@@ -46,3 +48,5 @@ The publishing workflow uses the domain configured in GitHub Pages and generates
 ## Research illustrations and interaction
 
 The research figure and photograph are supplied by the author. The photograph uses the approved natural lighting edit. Small kirigami and Kresling icons respond to hover, focus, press and touch; reduced-motion preferences are respected. The Kresling animation is illustrative geometry, not a rigid-folding solution or a force–displacement prediction.
+
+The bistability note reuses original research figures and animations from the author’s SES presentation. See [asset provenance](docs/bistable-note-sources.md) before replacing its media. Playback is opt-in, supports keyboard controls and pauses when the example or page is hidden. The mapping pair shares playback and scrubbing controls; percentages refer to clip position, not physical strain. Native video controls remain available without JavaScript.

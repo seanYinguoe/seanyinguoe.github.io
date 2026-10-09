@@ -2,11 +2,11 @@
 
 Personal academic website about architected structures, mechanical metamaterials, kirigami and inverse design.
 
-**Status:** Private draft. The GitHub Pages site is unpublished and its publishing workflow is disabled at the owner's request. Do not enable public publishing without a new request from the owner.
+**Website:** [seanyinguoe.github.io](https://seanyinguoe.github.io). Public release authorised by the owner on 9 October 2026.
 
 ## Update the website
 
-Edit the relevant file, then commit and push to `main`. Pushes do not publish the website. Continue reviewing changes through the separate owner-only preview while the design is being refined.
+Edit the relevant file, then commit and push to `main`. The GitHub Pages workflow checks, builds and publishes the website. It can also be run manually from the Actions tab.
 
 | File | Content |
 |---|---|
@@ -37,7 +37,7 @@ Open `http://localhost:8080`. Generated output in `dist/` is ignored by Git; the
 
 ## Hosting and a future custom domain
 
-The repository is private and its GitHub Pages deployment is unpublished. The publishing workflow is disabled and has no automatic push trigger. Only after the owner requests a public release, enable the workflow and run it manually. The workflow uploads only `dist/`, not the entire repository. The future public output includes indexing metadata, canonical URLs and a sitemap; these do not provide access control.
+The public website is hosted by GitHub Pages. The workflow uploads only `dist/`, not the entire repository. The output includes indexing metadata, canonical URLs and a sitemap. The private job tracker remains a separate authenticated application and is not hosted by GitHub Pages.
 
 A custom domain can be connected later without redesigning the site. Verify the domain in GitHub, add it under **Settings → Pages → Custom domain**, then configure its DNS using [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site). After connection, run the publishing workflow again so canonical URLs and the sitemap use the custom domain. Enable HTTPS once available.
 
